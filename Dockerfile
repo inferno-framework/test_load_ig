@@ -18,6 +18,5 @@ WORKDIR /home
 ENV JAVA_OPTS="-XX:MaxRAMPercentage=75.0"
 
 COPY --from=build /home/TestLoadIg-* .
-RUN bin/TestLoadIg prepare
 
 CMD ["./bin/TestLoadIg", "run"]
