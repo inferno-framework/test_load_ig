@@ -22,7 +22,9 @@ public class TestLoadIg {
       hl7Validator.prepare();
 
       for (int i = 0; i < DO_TIMES; i++) {
-        System.out.println("loading: free heap " + getFreeHeapSizeAsMbs() + " MB, total heap " + getTotalHeapSizeAsMbs() + " MB");
+        System.out.print("loading: allocated heap " + getUsedHeapSizeAsMbs() + " MB, ");
+        System.out.print("free heap " + getFreeHeapSizeAsMbs() + " MB, ");
+        System.out.println("max heap " + getTotalHeapSizeAsMbs() + " MB");
         hl7Validator.loadIg(id + (version != null ? "#" + version : ""), true);
       }
     } catch (Exception e) {
@@ -35,9 +37,15 @@ public class TestLoadIg {
     double heapFreeSizeInMb = (heapFreeSize / 1024.0 / 1024.0);
     return NumberFormat.getInstance().format(heapFreeSizeInMb);
   }
+
+  public static String getUsedHeapSizeAsMbs() {
+    long heapUsedSize = Runtime.getRuntime().totalMemory();
+    double heapUsedSizeInMb = (heapUsedSize / 1024.0 / 1024.0);
+    return NumberFormat.getInstance().format(heapUsedSizeInMb);
+  }
   
   public static String getTotalHeapSizeAsMbs() {
-    long heapTotalSize = Runtime.getRuntime().totalMemory();
+    long heapTotalSize = Runtime.getRuntime().maxMemory();
     double heapTotalSizeInMb = (heapTotalSize / 1024.0 / 1024.0);
     return NumberFormat.getInstance().format(heapTotalSizeInMb);
   }
