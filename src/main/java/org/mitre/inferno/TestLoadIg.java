@@ -25,6 +25,8 @@ public class TestLoadIg {
         System.out.print("loading: allocated memory " + getUsedMemoryAsMbs() + " MB, ");
         System.out.print("free memory " + getFreeMemoryAsMbs() + " MB, ");
         System.out.println("max memory " + getTotalMemoryAsMbs() + " MB");
+
+        // The method under test:
         hl7Validator.loadIg(id + (version != null ? "#" + version : ""), true);
       }
     } catch (Exception e) {
