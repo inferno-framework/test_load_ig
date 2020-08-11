@@ -22,9 +22,9 @@ public class TestLoadIg {
       hl7Validator.prepare();
 
       for (int i = 0; i < DO_TIMES; i++) {
-        System.out.print("loading: allocated heap " + getUsedHeapSizeAsMbs() + " MB, ");
-        System.out.print("free heap " + getFreeHeapSizeAsMbs() + " MB, ");
-        System.out.println("max heap " + getTotalHeapSizeAsMbs() + " MB");
+        System.out.print("loading: allocated memory " + getUsedMemoryAsMbs() + " MB, ");
+        System.out.print("free memory " + getFreeMemoryAsMbs() + " MB, ");
+        System.out.println("max memory " + getTotalMemoryAsMbs() + " MB");
         hl7Validator.loadIg(id + (version != null ? "#" + version : ""), true);
       }
     } catch (Exception e) {
@@ -32,21 +32,21 @@ public class TestLoadIg {
     }
   }
   
-  public static String getFreeHeapSizeAsMbs() {
-    long heapFreeSize = Runtime.getRuntime().freeMemory();
-    double heapFreeSizeInMb = (heapFreeSize / 1024.0 / 1024.0);
-    return NumberFormat.getInstance().format(heapFreeSizeInMb);
+  public static String getFreeMemoryAsMbs() {
+    long MemoryFreeSize = Runtime.getRuntime().freeMemory();
+    double MemoryFreeSizeInMb = (MemoryFreeSize / 1024.0 / 1024.0);
+    return NumberFormat.getIntegerInstance().format(MemoryFreeSizeInMb);
   }
 
-  public static String getUsedHeapSizeAsMbs() {
-    long heapUsedSize = Runtime.getRuntime().totalMemory();
-    double heapUsedSizeInMb = (heapUsedSize / 1024.0 / 1024.0);
-    return NumberFormat.getInstance().format(heapUsedSizeInMb);
+  public static String getUsedMemoryAsMbs() {
+    long MemoryUsedSize = Runtime.getRuntime().totalMemory();
+    double MemoryUsedSizeInMb = (MemoryUsedSize / 1024.0 / 1024.0);
+    return NumberFormat.getIntegerInstance().format(MemoryUsedSizeInMb);
   }
   
-  public static String getTotalHeapSizeAsMbs() {
-    long heapTotalSize = Runtime.getRuntime().maxMemory();
-    double heapTotalSizeInMb = (heapTotalSize / 1024.0 / 1024.0);
-    return NumberFormat.getInstance().format(heapTotalSizeInMb);
+  public static String getTotalMemoryAsMbs() {
+    long MemoryTotalSize = Runtime.getRuntime().maxMemory();
+    double MemoryTotalSizeInMb = (MemoryTotalSize / 1024.0 / 1024.0);
+    return NumberFormat.getIntegerInstance().format(MemoryTotalSizeInMb);
   }
 }
