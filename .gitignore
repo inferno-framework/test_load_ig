@@ -27,7 +27,7 @@ hs_err_pid*
 
 ## Gradle Stuff
 
-.gradle
+.gradle/
 /build/
 
 # Ignore Gradle GUI config
